@@ -30,6 +30,18 @@ Backend: https://ai-spend-audit-28lu.onrender.com
 
 ---
 
+## Screenshots
+
+### Audit Flow
+
+![Audit](./screenshots/audit.png)
+
+### Report Page
+
+![Report](./screenshots/report.png)
+
+---
+
 ## Tech Stack
 
 ### Frontend
