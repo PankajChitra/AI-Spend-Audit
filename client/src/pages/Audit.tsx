@@ -1,4 +1,5 @@
 import axios from "axios";
+import API_URL from "../lib/api";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -86,7 +87,7 @@ export default function Audit() {
   const handleSubmit = async () => {
   try {
     const response = await axios.post(
-      "http://localhost:5000/api/audit",
+      `${API_URL}/api/audit`,
       {
         teamSize,
         useCase,

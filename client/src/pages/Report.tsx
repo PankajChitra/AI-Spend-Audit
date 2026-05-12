@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import API_URL from "../lib/api";
 import { useParams } from "react-router-dom";
 
 type Recommendation = {
@@ -39,7 +40,7 @@ export default function Report() {
     const fetchReport = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/audit/${id}`
+          `${API_URL}/api/audit/${id}`
         );
 
         setReport(response.data);
@@ -60,7 +61,7 @@ export default function Report() {
       setSubmitting(true);
 
       await axios.post(
-        "http://localhost:5000/api/leads",
+        `${API_URL}/api/leads`,
         {
           email,
           company,
