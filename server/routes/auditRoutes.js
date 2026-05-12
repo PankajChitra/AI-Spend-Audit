@@ -69,4 +69,23 @@ router.post("/",  async (req, res) => {
 res.json(audit);
 });
 
+router.get("/:id", async (req, res) => {
+  try {
+    const audit = await Audit.findById(req.params.id);
+
+    if (!audit) {
+      return res.status(404).json({
+        message: "Report not found",
+      });
+    }
+
+    res.json(audit);
+
+  } catch (error) {
+    res.status(500).json({
+      message: "Server error",
+    });
+  }
+});
+
 module.exports = router;

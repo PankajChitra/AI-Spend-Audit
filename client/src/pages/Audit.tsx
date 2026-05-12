@@ -99,7 +99,7 @@ export default function Audit() {
       JSON.stringify(response.data)
     );
 
-    navigate("/report/1");
+    navigate(`/report/${response.data._id}`);
   } catch (error) {
     console.error(error);
     alert("Failed to generate audit");
