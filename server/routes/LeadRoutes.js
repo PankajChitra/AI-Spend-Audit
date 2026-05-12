@@ -2,12 +2,14 @@ const express = require("express");
 
 const router = express.Router();
 
-const Lead = require("../models/Leads");
+const Lead = require("../models/Lead");
+
 const sendAuditEmail =
   require("../services/emailService");
 
 const Audit =
   require("../models/Audit");
+
 router.post("/", async (req, res) => {
   try {
 
@@ -25,14 +27,14 @@ router.post("/", async (req, res) => {
       teamSize: req.body.teamSize,
       auditId: req.body.auditId,
     });
+
     const audit = await Audit.findById(
-    req.body.auditId
+      req.body.auditId
     );
 
-    
     await sendAuditEmail({
-    email: req.body.email,
-    monthlySavings:
+      email: req.body.email,
+      monthlySavings:
         audit?.monthlySavings || 0,
     });
 
