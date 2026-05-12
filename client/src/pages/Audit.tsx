@@ -1,3 +1,5 @@
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const TOOL_OPTIONS = [
@@ -10,8 +12,10 @@ const TOOL_OPTIONS = [
   "Gemini",
   "Windsurf",
 ];
-
 export default function Audit() {
+
+  const navigate = useNavigate();
+
   const [teamSize, setTeamSize] = useState(1);
   const [useCase, setUseCase] = useState("coding");
 
@@ -79,16 +83,28 @@ export default function Audit() {
     setTools(updated);
   };
 
-  const handleSubmit = () => {
-    console.log({
-      teamSize,
-      useCase,
-      tools,
-    });
+  const handleSubmit = async () => {
+  try {
+    const response = await axios.post(
+      "http://localhost:5000/api/audit",
+      {
+        teamSize,
+        useCase,
+        tools,
+      }
+    );
 
-    alert("Next step: connect backend audit engine");
-  };
+    localStorage.setItem(
+      "audit-report",
+      JSON.stringify(response.data)
+    );
 
+    navigate("/report/1");
+  } catch (error) {
+    console.error(error);
+    alert("Failed to generate audit");
+  }
+};
   return (
     <div className="min-h-screen bg-[#0b0f19] text-white px-6 py-12">
       <div className="max-w-4xl mx-auto">
