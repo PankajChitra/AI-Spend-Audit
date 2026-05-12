@@ -4,7 +4,7 @@ require("dotenv").config();
 
 const connectDB = require("./config/db");
 const auditRoutes = require("./routes/auditRoutes");
-
+const leadRoutes = require("./routes/leadRoutes");
 connectDB();
 
 const app = express();
@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/audit", auditRoutes);
-
+app.use("/api/leads", leadRoutes);
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {

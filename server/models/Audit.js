@@ -19,6 +19,8 @@ const auditSchema = new mongoose.Schema(
 
     annualSavings: Number,
 
+    summary: String,
+
     recommendations: [recommendationSchema],
   },
   {
